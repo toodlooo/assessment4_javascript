@@ -351,7 +351,16 @@
 </fieldset>
 
 <script>
-  // put your code here
+  $('#agreeable-form').attr("action", "#");
+
+  var user_input = $('#favorite-food-input').val()
+
+  $('#agreeable-form').submit(function() {
+    $('#agreeable-text').html("OMG I like " + user_input + " too! wOOt!");
+  });
+
+  // Pretty sure this needs AJAX so that I can apply the input..
+
 </script>
 
 <div class="hint">
@@ -380,7 +389,20 @@
 </fieldset>
 
 <script>
-  // put your code here
+  $('#play-guessing-game').click( function() {
+    var correct = Math.floor(Math.random() * 100);
+    console.log(correct);
+    var guess = prompt("Guess a number between 1-100!");
+    while (guess != correct) {
+      if (guess > correct) {
+          guess = prompt("Too high! Guess again:");
+      } else if (guess < correct) {
+          guess = prompt("Too low! Guess again:");
+      };
+    };
+    alert("Woohoo! You got it. Nice.");
+  });
+
 </script>
 
 <div class="hint">
@@ -420,7 +442,29 @@
 </fieldset>
 
 <script>
-  // put your code here
+
+  $('#play-guessing-game-2').click( function() {
+    $('#number-guessed').removeAttr('disabled');
+    $('#try-this-number').removeAttr('disabled');
+    $('#guessing-game-2-form').attr("action", "#");
+  });
+  var correct = Math.floor(Math.random() * 100);
+  console.log(correct);  
+  var guess = $('#number-guessed').val();
+  $('#try-this-number').click( function() {
+    while (guess != correct) {
+      if (guess > correct) {
+          $('#number-guessing-msg').html("Too high! Guess again."); // When the user inputs any number, it's like the guess needs to be "reset" I think. Was trying to see if a continue/break would help go back.
+          alert("too high") // Alerts seem to work but they work infinitely, meaning that there's no way to "reset" the variable guessing..
+      } else if (guess < correct) {
+          $('#number-guessing-msg').html("Too low! Guess again.");
+          continue;
+      };
+    };
+    $('#number-guessing-msg').html("Woohoo! You got it. Nice.");
+    $('#try-this-number').attr('disabled', 'disabled');
+  });
+
 </script>
 
 
@@ -494,6 +538,6 @@
 </script>
 
 
-<script src="js-skills.js"></script>
+<!-- <script src="js-skills.js"></script> -->
 </body>
 </html>
